@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<!--<meta charset="utf-8" http-equiv="X-UA-Compatible" content="IE=9" />-->
+
+<!-- Internet Explorer Compatibility-->
+<!--Not needed for Hybrid Mobile Apps so can be deleted-->
+<!--[if IE 7]><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" /><![endif]-->
+<!--[if IE]>
+
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <style type="text/css">
+        .clear {
+            zoom: 1;
+            display: none;
+        }
+    </style>
+<![endif]-->
+
+<title>ICook</title>
+
+<!-- JQM Themeroller Stylesheet 
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css" />-->
+<link rel="stylesheet" type="text/css" href="styles/themes/swag.css" />
+<link rel="stylesheet" href="jquery.mobile-1.4.0.css">
+
+<!--jQuery and Mobile Core Minimized-->
+<script src="jquery-1.9.1.min.js"></script>
+<script src="jquery.mobile-1.4.0.min.js"></script>
+
+
+
+
+<!-- To Fix Placeholder Issue in Internet Explorer-->
+<!--http://jamesallardice.github.io/Placeholders.js/-->
+<script src="controllers/class.Placeholders.min.js"></script>
+
+<!--Call Controller-->
+<script src="controllers/class.controller.registerUser.js"></script>
+<script src="controllers/class.controller.login.js"></script>
+
+<!--<script src="controllers/class.getDashBoardData.js"></script>-->
+<script src="controllers/class.controller.logout.js"></script>
+<script src="controllers/class.controller.getAllRecipes.js"></script>
+
+
+<script src="config/init.js"></script>
+
+
+<link rel="stylesheet" type="text/css" href="styles/jquery-mobile-fluid960.css">
+<!--custom CSS must come last to overide CSS defined in the jquery mobile functions-->
+<link rel="stylesheet" type="text/css" href="styles/custom_overides.css" />
+
+<script>
+$(document).ready(function () {
+//Hide Elements
+var $content = $("#registerUser").hide();
+var $content = $("#about-app").hide();
+   
+   
+//Make Elements visible on click     
+$(".toggle").on("click", function (e) {
+        $(this).toggleClass("expanded");
+        $(this).next().slideToggle();
+
+});
+});
+
+</script>
+
+</head>
+
+<body>
+
+<div data-role="page" id="home" class="type-register">
+<div id="formContainer">
+<div id="logo"> <img class="arrow" src="images/arrow.png" alt="arrow"> <img class="icon-logo" width="45" src="images/logo.png" alt="logo"> </div>
+      <div id="formContent">
+        <div class="header">
+          <h2>ICook</h2>
+        </div>
+        <form id='loginForm'>
+          <div class="field">
+            <input name="email" id="email" type="text" placeholder="Your Email Address" />
+          </div>
+          <div class="field">
+            <input name="PassWord" id="PassWord" type="password" placeholder="Your Password" />
+          </div>
+          <div id="login-btn">
+            <button>Login</button>
+          </div>
+          <span id="msg"> </span>
+        </form>
+        <div class="toggle"><a href="#">
+        <span class="image"></span><span class="text">Register Form</span></a></div>
+        
+        <form class="bob" id='registerUser'>
+          <label for="firstN"></label>
+          <div class="field">
+            <input name="firstN" id="firstN" type="text" placeholder="Your First Name" />
+          </div>
+          <label for="lastN"></label>
+          <div class="field">
+            <input name="lastN" id="lastN" type="text" placeholder="Your Last Name" />
+          </div>
+          <label for="email"></label>
+          <div class="field">
+            <input name="email" id="email" type="text" placeholder="example@yahoo.com" />
+          </div>
+          <label for="PassWord"></label>
+          <div class="field">
+            <input name="PassWord" id="PassWord" type="password" placeholder="password" />
+          </div>
+          <button id="reg">Register Account</button>
+          <span class="msg"></span>
+        </form>
+        <div class="toggle"><a href="#">
+        <span class="info"></span><span class="text">About</span></a></div>
+        <div id="about-app">
+          <h2 class="title">About the app</h2>
+          <hr class="line">
+          <p>This app was created for the sole purpose of helping student plan out their meals, the app can be use for breakfast lunch and dinner and will have the chose of many recipe or you can put in your own recipe.</p>
+          <h2 class="title">How to use the app</h2>
+          <hr class="line">
+          <p>In order to use the application you will need to register an account which is free, in which you have to type in your first and last name, email and password, once you've done with that you can now use the app fully.</p>
+        </div>
+      </div>
+</div><!--Close formContainer-->
+</div><!-- /close page -->
+
+
+
+
+<!--PAGE 2 - DASHBOARD -->
+
+<div data-role="page" id="dashboard" data-transition="slide"> 
+  
+  <!--place your addition header - sections and footer here--> 
+  <!--remember to put in a h1 identifier so you know you have reached the dashboard screen-->
+  <section id="header-dashboard" data-role="content" data-theme="a" class="center custom-border page-identifier">
+    <h4>Dashboard</h4>
+  </section>
+  <div id="wrapper"> 
+    
+    <!--Main Content in Center of Screen-->
+    <section data-role="content" class="constrain contentBG"> 
+      
+      <!--960 Grid Root [responsive web design plugin]-->
+      <div class="container_16" data-theme="a">
+        <div class="grid_8" data-theme="a">
+          <div class="gridMarginsLeft"> 
+            <!--Close Left Column 1 --> 
+            
+            <!--Left Column Group 2-->
+            <div data-role="listview" data-inset="true" data-theme="a" data-icon="false" data-filter-placeholder="Search..." class="jqm-list jqm-home-list ui-listview ui-listview-inset ui-corner-all ui-shadow">
+              <div id="logo"> <img class="arrow" src="images/arrow.png"> <img class="icon" width="30" src="images/compose-white.png"> </div>
+              <div class="light-grey">
+                <div class="header">
+                  <h2>Recipe of the day</h2>
+                </div>
+                <table data-role="table" id="sectors">
+                </table>
+                <div class="trip-add">
+                  <div class="toggle"><span class="image"></span><span class="text">Add Sector</span> </div>
+                  <div id="sector-form"> Coming Soon </div> 
+                </div>
+              </div>
+            </div>
+            <!--Close Left Column 2 --> 
+          </div>
+          <!--Close grid_8--> 
+        </div>
+        <!--Close container_16--> 
+        
+        <!--Right Column Group 1-->
+        <div class="grid_8" data-theme="a">
+          <div class="gridMarginsRight"> 
+            <!--Right Column Group 1-->
+            <div data-role="listview" data-inset="true" data-theme="a" data-icon="star" class="mylist jqm-list jqm-home-list ui-listview ui-listview-inset ui-corner-all ui-shadow">
+              <div id="logo"> <img class="arrow" src="images/arrow.png"> <img class="icon" width="30" src="images/list-white.png"> </div>
+              <div class="light-grey">
+                <div class="header">
+                  <h2>News</h2>
+                </div>
+                <table data-role="table" id="trip" style="background:#bdc3c7; text-shadow:none; color:black;">
+                </table>
+                 <div class="toggle"> <span class="image"></span><span class="text">Edit Note</span></div>
+				<div id="sector-form">
+                  <form id="deleteForm">
+                    <div class="field">
+                    </div>
+                    Coming Soon <span class="msg"></span>
+                  </form>
+                </div>
+			
+              </div>
+            </div>
+            <!--Close Right Column 1 --> 
+          </div>
+        </div>
+        <!--Close grid_8--> 
+        
+        <!--Spare Group--> 
+        
+      </div>
+      <!--Close container_16-->
+      
+      <div class="container_16" data-theme="a">
+        <div class="grid_8" data-theme="a">
+          <div class="gridMarginsLeft"> 
+            <!--Close Left Column 1 --> 
+            
+            <!--Left Column Group 2-->
+            <div data-role="listview" data-inset="true" data-theme="a" data-icon="false" data-filter-placeholder="Search..." class="jqm-list jqm-home-list ui-listview ui-listview-inset ui-corner-all ui-shadow">
+              <div id="logo"> <img class="arrow" src="images/arrow.png"> <img class="icon" width="30" src="images/logout.png"> </div>
+              <div class="light-grey">
+                <div class="header">
+                  <h2>Profile</h2>
+                </div>
+                <ul id="profile">
+                  <li id="username" class="name">
+                    <p class="profile">Name:</p>
+                  </li>
+                  <li id="registeredemail" class="name">
+                    <p class="profile">Email:</p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!--Close Left Column 2 --> 
+          </div>
+          <!--Close grid_8--> 
+        </div>
+        <!--Close container_16--> 
+        
+        <!--Right Column Group 1-->
+        <div class="grid_8" data-theme="a">
+          <div class="gridMarginsRight"> 
+            <!--Right Column Group 1-->
+            <div data-role="listview" data-inset="true" data-theme="a" data-icon="star" class="mylist jqm-list jqm-home-list ui-listview ui-listview-inset ui-corner-all ui-shadow">
+              <div id="logo"> <img class="arrow" src="images/arrow.png"> <img class="icon" width="30" src="images/list-white.png"> </div>
+              <div class="light-grey">
+                <div class="header">
+                  <h2>Add Recipe's</h2>
+                </div>
+                <div class="otherdeatils"> <a href="#addnote">
+                  <button> Click here to add recipe </button>
+                  </a> </div>
+              </div>
+            </div>
+            <!--Close Right Column 1 --> 
+          </div>
+        </div>
+        <!--Close grid_8--> 
+        
+        <!--Spare Group--> 
+        
+      </div>
+      <!--Close container_16--> 
+      
+    </section>
+    <!--Close Section-->
+    
+    <footer data-tap-toggle="false" data-role="footer" data-position="fixed" class="footer" data-theme="a">
+      <section class="footer-link" id="logout"><a class="red" href="#home"><img width="30" align="middle" src="images/logout.png">
+        <p>Logout</p>
+        </a></section>
+      <section class="footer-link" id="dash"><a class="red" href="#dashboard"><img width="30" src="images/dash.png">
+        <p>Dashboard</p>
+        </a></section>
+      <section class="footer-link geoLocation_btn" id="items"><a  href="#recipe"><img width="30" src="images/list.png">
+        <p>Recipe's<p>  
+        </a></section>
+      <section class="footer-link" id="compose"><a class="red" href="#addrecipe"><img width="30" src="images/compose.png">
+       <p>Add Recipe's</p>
+        </a></section>
+    </footer>
+  </div>
+</div>
+<!-- /close page --> 
+
+<!--PAGE 3 - recipe -->
+<div data-role="page" id="recipe" data-add-back-btn="true"> 
+  <div id="formContainer">
+    <div id="logo"> <img class="arrow" src="images/arrow.png"> <img class="icon" width="30" src="images/compose-white.png"> </div>
+    <div id="formContent">
+      <div class="header">
+        <h2>Recipe's</h2>
+      </div>
+	  <article data-role="content">
+    		<table data-role="table" data-mode="reflow" class="ui-responsive table-stroke">
+                <thead>
+                  <tr>
+                    <th width="500"></th>
+                    <th width="400"></th>
+                  </tr>
+                </thead>
+                <tbody class="listAllRecipes">
+                
+
+                </tbody>
+            </table>
+		</article>
+      <!--<form id='composeForm'>-->
+	  
+		<!--</form>-->
+          </div>
+        </div>
+  <footer data-tap-toggle="false" data-role="footer" data-position="fixed" class="footer" data-theme="a">
+      <section class="footer-link" id="logout"><a class="red" href="#home"><img width="30" align="middle" src="images/logout.png">
+        <p>Logout</p>
+        </a></section>
+      <section class="footer-link" id="dash"><a class="red" href="#dashboard"><img width="30" src="images/dash.png">
+        <p>Dashboard</p>
+        </a></section>
+      <section class="footer-link geoLocation_btn" id="items"><a  href="#recipe"><img width="30" src="images/list.png">
+        <p>Recipe's<p>  
+        </a></section>
+      <section class="footer-link" id="compose"><a class="red" href="#addrecipe"><img width="30" src="images/compose.png">
+       <p>Add Recipe's</p>
+        </a></section>
+  </footer>
+
+</div>
+<!-- /close page --> 
+
+<!--PAGE 4 - ADDrecipe -->
+
+<div data-role="page" id="addrecipe">
+  <div id="formContainer">
+    <div id="logo"> <img class="arrow" src="images/arrow.png"> <img class="icon" width="30" src="images/compose-white.png"> </div>
+    <div id="formContent">
+      <div class="header">
+        <h2>Adding Recipe's</h2>
+      </div>
+      <form class="bob" id='addrecipe'>
+          <label for="recips_name"></label>
+          <div class="field">
+            <input name="recips_name" id="recips_name" type="text" placeholder="Add name of recipe" />
+          </div>
+          <label for="recipe_text"></label>
+          <div class="field">
+            <input name="recipe_text" id="recipe_text" type="text" placeholder="Add in instrution" />
+          </div>
+
+          <button id="reg">Register Account</button>
+          <span class="msg"></span>
+        </form>
+	    <footer data-tap-toggle="false" data-role="footer" data-position="fixed" class="footer" data-theme="a">
+      <section class="footer-link" id="logout"><a class="red" href="#home"><img width="30" align="middle" src="images/logout.png">
+        <p>Logout</p>
+        </a></section>
+      <section class="footer-link" id="dash"><a class="red" href="#dashboard"><img width="30" src="images/dash.png">
+        <p>Dashboard</p>
+        </a></section>
+      <section class="footer-link geoLocation_btn" id="items"><a  href="#recipe"><img width="30" src="images/list.png">
+        <p>Recipe's<p>  
+        </a></section>
+      <section class="footer-link" id="compose"><a class="red" href="#addrecipe"><img width="30" src="images/compose.png">
+       <p>Add Recipe's</p>
+        </a></section>
+  </footer>
+    </div>
+  </div>
+  </div>
+  
+
+</body>
+</html>
